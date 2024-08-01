@@ -10,28 +10,24 @@ parse_args() {
 
 OUTPUT=./alacritty/alacritty.toml
 IMPORTS=(
-  ./alacritty/window.toml
-  ./alacritty/motion.toml
-  ./alacritty/keymap.toml
-  ./alacritty/appearance.toml
-  ./alacritty/shell.toml
+  alacritty/window.toml
+  alacritty/motion.toml
+  alacritty/keymap.toml
+  alacritty/appearance.toml
+  alacritty/shell.toml
 )
 
 make_toml() {
-  PATH_ARRAY="$*"
+  PATH_ARRAY=("$@")
   TOP_COMMENT='# THIS FILE WAS GENERATED AUTOMATICALLY
 # DO NOT CHANGE IT
 # See: github.com/marcosdly/allacritty.toml
 # License: MIT
 # Please drop a star, feedback or suggestion.
   '
-  HERE="$(dirname "${BASH_SOURCE[0]}")"
   PATH_LIST=$(
-    # shellcheck disable=SC2086
-    echo "$PATH_ARRAY" |
-      xargs realpath --relative-to="$HERE" |
+    printf '%s\n' "${PATH_ARRAY[@]}" |
       sed "s@^@$ARG_PREFIX/@" |
-      xargs realpath -m |
       sed 's/^/  "/' |
       sed 's/$/",/'
   )
