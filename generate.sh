@@ -19,7 +19,7 @@ IMPORTS=(
 
 make_toml() {
   PATH_ARRAY="$*"
-  TOP_COMMENT='# THIS FILE WAS GENERATED AUTOMARICALLY
+  TOP_COMMENT='# THIS FILE WAS GENERATED AUTOMATICALLY
 # DO NOT CHANGE IT
 # See: github.com/marcosdly/allacritty.toml
 # License: MIT
