@@ -1,14 +1,14 @@
 <h1 align="center"><code>alacritty.toml</code></h1>
 
+## Requirements
+
+- WSL2 or Linux
+- `bash`
+- `coreutils`
+
 ## Installing
 
-Run [`generate.sh`](./generate.sh) to create the entrypoint configuration file containing the import statement.
-
-```sh
-./generate.sh
-```
-
-Then run [`install.sh`](./install.sh) to move files to alacritty's configuration directory.
+Run [`install.sh`](./install.sh) to generate an entrypoint file and **copy** them to alacritty's configuration directory.
 
 ```sh
 ./install.sh
