@@ -3,18 +3,17 @@
 ## Requirements
 
 - WSL2 or Linux
-- `bash`
-- `coreutils`
+- Python 3.7 or greater
 
 ## Installing
 
-Run [`install.sh`](./install.sh) to generate an entrypoint file and **copy** them to alacritty's configuration directory.
+Run [`install.py`](./install.py) to generate an entrypoint file and copy it to alacritty's configuration directory. Alacritty will load the files from the folder you cloned this repository in.
 
 ```sh
-./install.sh
+python ./install.py
 ```
 
 ### File placement
 
-- Windows: `%APPDATA%\alacritty\`
-- Linux: `$HOME/.config/alacritty/`
+- Windows: `%APPDATA%\alacritty\alacritty.toml`
+- Linux: `$HOME/.config/alacritty/alacritty.toml`
