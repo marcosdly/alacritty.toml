@@ -1,0 +1,10 @@
+# THIS FILE WAS GENERATED AUTOMATICALLY
+# DO NOT CHANGE IT
+# See: github.com/marcosdly/allacritty.toml
+# License: MIT
+# Please drop a star, feedback or suggestion.
+  
+import = [
+  # {generic}
+  # {os_specific}
+]
