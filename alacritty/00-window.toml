@@ -1,0 +1,28 @@
+[window]
+dimensions = { columns = 120, lines = 80 }
+position = "None"
+padding = { x = 3, y = 3 }
+dynamic_padding = false
+decorations = "Full"
+opacity = 0.9
+blur = false
+startup_mode = "Maximized"
+title = "Nerd's mirror"
+dynamic_title = false
+decorations_theme_variant = "Dark"
+resize_increments = false
+
+[bell]
+duration = 0
+command = "None"
+
+[terminal]
+# Ability to access system clipboard with escape sequences
+osc52 = "Disabled"
+
+[[hints.enabled]]
+hyperlinks = true
+post_processing = true
+persist = true
+mouse.enabled = true
+action = "Copy"

@@ -1,0 +1,9 @@
+[scrolling]
+history = 100000 # max possible
+multiplier = 5
+
+[selection]
+save_to_clipboard = false
+
+[mouse]
+hide_when_typing = true

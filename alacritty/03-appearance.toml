@@ -1,0 +1,73 @@
+[font]
+normal = { family = "CartographCF Nerd Font", style = "Regular" }
+bold = { family = "CartographCF Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
+size = 11.0
+builtin_box_drawing = true
+
+[cursor]
+style = { shape = "Block", blinking = "Always" }
+blink_interval = 500
+blink_timeout = 0
+unfocused_hollow = true
+# thickness = 
+
+# Color Scheme
+# Name: ashes
+# Variation: Dark
+# Author: Chris Kempson
+# Preview: https://terminal.sexy/#HCAjx8zRHCAjx66VlceurseVrpXHx5Wula7Hx8zRdHyEx66VlceurseVrpXHx5Wula7H8_T1
+
+[colors.primary]
+foreground = "#c7ccd1"
+background = "#1c2023"
+# dim_foreground
+bright_foreground = "#f3f4f5"
+
+[colors.search]
+matches = { foreground = "#f3f4f5", background = "#ae95c7" }
+focused_match = { foreground = "#f3f4f5", background = "#ae95c7" }
+
+[colors.hints]
+start = { foreground = "#f3f4f5", background = "#95aec7" }
+end = { foreground = "#f3f4f5", background = "#95aec7" }
+
+[colors.normal]
+black = "#1c2023"
+red = "#c7ae95"
+green = "#95c7ae"
+yellow = "#aec795"
+blue = "#ae95c7"
+magenta = "#c795ae"
+cyan = "#95aec7"
+white = "#c7ccd1"
+
+[colors.bright]
+black = "#747c84"
+red = "#c7ae95"
+green = "#95c7ae"
+yellow = "#aec795"
+blue = "#ae95c7"
+magenta = "#c795ae"
+cyan = "#95aec7"
+white = "#f3f4f5"
+
+# [colors.dim]
+# black = "#"
+# red = "#"
+# green = "#"
+# yellow = "#"
+# blue = "#"
+# magenta = "#"
+# cyan = "#"
+# white = "#"
+
+[colors]
+cursor = { text = "#c7ae95", cursor = "#c795ae" }
+vi_mode_cursor = { text = "#95c7ae", cursor = "#c7ccd1" }
+line_indicator = { foreground = "#c7ccd1", background = "#747c84" }
+footer_bar = { foreground = "#c7ccd1", background = "#747c84" }
+selection = { text = "#c7ccd1", background = "#95aec7" }
+transparent_background_colors = false
+draw_bold_text_with_bright_colors = true
