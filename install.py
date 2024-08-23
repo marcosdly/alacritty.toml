@@ -1,65 +1,45 @@
-from pathlib import Path
-import itertools
 import os
+import itertools
+from pathlib import Path
+import shutil
+from pprint import pformat
+
+NOTICE = """\
+# THIS FILE WAS GENERATED AUTOMATICALLY
+# DO NOT CHANGE IT
+# See: github.com/marcosdly/allacritty.toml
+# License: MIT
+# Please drop a star, feedback or suggestion.
+"""
 
 
-def file_sorting_key(path: str) -> int:
-    basename = os.path.basename(path)
-    return int(basename[:2])
-
-
-def listdir(dir: str) -> list[str]:
-    return [entry.path for entry in os.scandir(dir)]
-
-
-def absolute(paths: list[str]) -> list[str]:
-    return [os.path.abspath(p) for p in paths]
-
-
-def escape_backslash(paths: list[str]) -> list[str]:
-    return [p.replace("\\", "\\\\") for p in paths]
-
-
-def quoted(paths: list[str]) -> list[str]:
-    return [f'"{p}"' for p in paths]
-
-
-def indented(paths: list[str], size: int = 2) -> list[str]:
-    spaces = " " * size
-    return [f"{spaces}{p},\n" for p in paths]
-
-
-def formatted(paths: list[str]) -> list[str]:
-    return indented(quoted(escape_backslash(absolute(paths))))
+def sortkey(filename: Path):
+    return int(filename.stem[:2])
 
 
 def main():
-    with open("./alacritty.toml", "rt") as template:
-        lines = template.readlines()
+    config_dir = Path(os.environ["APPDATA"].strip()).joinpath("alacritty")
 
-    with_imports = lines.copy()
+    with os.scandir("alacritty") as generic_paths:
+        generic = [Path(entry.path) for entry in generic_paths]
 
-    generic_paths = listdir("./alacritty")
-    generic_paths.sort(key=file_sorting_key)
-    generic_paths = formatted(generic_paths)
+    with os.scandir("windows" if os.name == "nt" else "linux") as os_paths:
+        os_specific = [Path(entry.path) for entry in os_paths]
 
-    os_specific_paths = listdir("./windows" if os.name == "nt" else "./linux")
-    os_specific_paths.sort(key=file_sorting_key)
-    os_specific_paths = formatted(os_specific_paths)
+    generic.sort(key=sortkey)
+    os_specific.sort(key=sortkey)
 
-    for i, line in enumerate(lines):
-        if "{generic}" in line:
-            with_imports[i] = generic_paths
-            continue
-        if "{os_specific}" in line:
-            with_imports[i] = os_specific_paths
+    src_all = list(itertools.chain(generic, os_specific))
+    dest_all = [config_dir.joinpath(src_file.name) for src_file in src_all]
 
-    flatten = list(itertools.chain.from_iterable(with_imports))
+    os.makedirs(config_dir, exist_ok=True)
+    for src, dest in zip(src_all, dest_all):
+        shutil.copyfile(str(src.absolute()), str(dest.absolute()))
 
-    prefix = Path(os.getenv("APPDATA") if os.name == "nt" else os.getenv("HOME"))
-
-    with open(prefix / "alacritty" / "alacritty.toml", "wt") as output:
-        output.writelines(flatten)
+    literal_paths = [str(p.absolute()) for p in dest_all]
+    # width=0 makes every token (bracket, string, etc) ocupy its own line
+    text = f"{NOTICE}\nimport = {pformat(literal_paths, indent=2, width=0)}"
+    config_dir.joinpath("alacritty.toml").write_text(text, encoding="utf-8")
 
 
 if __name__ == "__main__":
